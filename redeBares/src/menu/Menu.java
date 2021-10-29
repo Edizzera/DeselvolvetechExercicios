@@ -32,6 +32,9 @@ public class Menu {
                     totalPessoas(clientes);
 
                     break;
+                case SAIDA_CLIENTE:
+                    saidaBar(clientes);
+                    break;
                 case SAIR:
                     System.exit(0);
                     break;
@@ -111,34 +114,53 @@ public class Menu {
 
     }
 
+
     public static void totalPessoas(List<Cliente> clientes) {
         int contadorPessoas = 0;
         int contadorMasc = 0;
         int contadorFem = 0;
-        String masculino = "Masculino";
+//        String masculino = "Masculino";
         boolean flag = false;
         if(clientes.isEmpty())
             JOptionPane.showMessageDialog(null,"Não há Clientes");
         else{
             for(Cliente statusPesq : clientes){
                 Genero generos = statusPesq.getGenero();
-                if(generos.getNomeGenero().equals(masculino) ) {
+                if(generos.getNomeGenero().equals("Masculino") ) {
+
+                    JOptionPane.showMessageDialog(null, "Numero de clientes :" + clientes.size() + "\n" +
+                            "Homens: " + contadorMasc + "\n" + "Mulheres: "+ contadorFem);
                     contadorPessoas++;
                     contadorMasc++;
+
                 }else {
                     contadorPessoas++;
                     contadorFem++;
                 }
                 flag =true;
             }
-            JOptionPane.showMessageDialog(null, "Numero de clientes :" + contadorPessoas + "\n" +
-                    "Homens: " + contadorMasc + "\n" + "Mulheres: "+ contadorFem);
 
             if(!flag){
 
                 JOptionPane.showMessageDialog(null, "Clientes não encontrados!");
             }
         }
+    }
+//WORK IN PROGRESS
+    public static void saidaBar(List<Cliente> clientes) {
+        String removeCpf = JOptionPane.showInputDialog("Qual o numero do cpf de saída? ");
+        boolean flag = false;
+        for(Cliente saidaCli : clientes) {
+            if(saidaCli.getCpf().equals(removeCpf)) {
+                JOptionPane.showMessageDialog(null,"Volte Sempre!");
+                clientes.remove(saidaCli);
+                flag = true;
+            }
+        }
+        if(!flag){
+            JOptionPane.showMessageDialog(null,"Cliente não encontrado!");
+        }
+
 
     }
 

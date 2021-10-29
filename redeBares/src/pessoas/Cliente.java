@@ -7,6 +7,7 @@ public class Cliente extends Pessoa {
     private int idade;
     private Genero genero;
 
+
     public Cliente() {}
 
     public Cliente(String nome, String cpf, int idade, Genero genero) {
@@ -15,6 +16,7 @@ public class Cliente extends Pessoa {
         this.idade = idade;
         this.genero = genero;
     }
+
 
     public Genero getGenero() {
         return genero;
@@ -39,6 +41,8 @@ public class Cliente extends Pessoa {
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
+
 
 
 
