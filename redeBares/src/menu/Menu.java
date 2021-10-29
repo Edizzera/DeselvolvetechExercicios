@@ -1,6 +1,7 @@
 package menu;
 
 import pessoas.Cliente;
+import util.Genero;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class Menu {
 
                     break;
                 case PESQUISA_TOTAL_PESSOAS:
+                    totalPessoas(clientes);
 
                     break;
                 case SAIR:
@@ -47,13 +49,23 @@ public class Menu {
         }
         return  Integer.parseInt(JOptionPane.showInputDialog(mnu));
     }
+    private static  int setGenero(){
+        String status = """
+                Informe o Genero do Cliente:
+                1- Masculino
+                2- Feminino\s
+                """;
+        return Integer.parseInt(JOptionPane.showInputDialog(status));
+    }
 
     public static void cadastraCliente(List<Cliente> clientes) {
 
         String nomeCliente = JOptionPane.showInputDialog("Qual o nome do Cliente? ");
         String cpfCliente = JOptionPane.showInputDialog("Qual o cpf do Cliente? ");
         int idadeCliente = Integer.parseInt( JOptionPane.showInputDialog("Qual idade do Cliente? "));
-        String generoCliente = JOptionPane.showInputDialog("Qual o gênero do Cliente? ");
+        Genero generoCliente;
+        Integer resp = setGenero();
+        generoCliente = Genero.getEnumFromValor(resp);
 
         Cliente cliente = new Cliente(nomeCliente,cpfCliente,idadeCliente,generoCliente);
         clientes.add(cliente);
@@ -94,6 +106,37 @@ public class Menu {
             }
             if(!flag) {
                 JOptionPane.showMessageDialog(null, "Não encontrou o Cliente");
+            }
+        }
+
+    }
+
+    public static void totalPessoas(List<Cliente> clientes) {
+        int contadorPessoas = 0;
+        int contadorMasc = 0;
+        int contadorFem = 0;
+        String masculino = "Masculino";
+        boolean flag = false;
+        if(clientes.isEmpty())
+            JOptionPane.showMessageDialog(null,"Não há Clientes");
+        else{
+            for(Cliente statusPesq : clientes){
+                Genero generos = statusPesq.getGenero();
+                if(generos.getNomeGenero().equals(masculino) ) {
+                    contadorPessoas++;
+                    contadorMasc++;
+                }else {
+                    contadorPessoas++;
+                    contadorFem++;
+                }
+                flag =true;
+            }
+            JOptionPane.showMessageDialog(null, "Numero de clientes :" + contadorPessoas + "\n" +
+                    "Homens: " + contadorMasc + "\n" + "Mulheres: "+ contadorFem);
+
+            if(!flag){
+
+                JOptionPane.showMessageDialog(null, "Clientes não encontrados!");
             }
         }
 

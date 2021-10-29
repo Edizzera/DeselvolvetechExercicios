@@ -1,16 +1,26 @@
 package pessoas;
 
+import util.Genero;
+
 public class Cliente extends Pessoa {
     private String cpf;
     private int idade;
-    private String genero;
+    private Genero genero;
 
     public Cliente() {}
 
-    public Cliente(String nome, String cpf, int idade, String genero) {
+    public Cliente(String nome, String cpf, int idade, Genero genero) {
         super(nome);
         this.cpf = cpf;
         this.idade = idade;
+        this.genero = genero;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
         this.genero = genero;
     }
 
@@ -30,13 +40,7 @@ public class Cliente extends Pessoa {
         this.idade = idade;
     }
 
-    public String getGenero() {
-        return genero;
-    }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
 
     @Override
     public String toString() {
