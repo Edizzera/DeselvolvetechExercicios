@@ -20,9 +20,11 @@ public class Menu {
 
                     break;
                 case PESQUISA_CLIENTE_NOME:
+                    pesquisaClienteNome(clientes);
 
                     break;
                 case PESQUISA_CLIENTE_CPF:
+                    pesquisaClienteCpf(clientes);
 
                     break;
                 case PESQUISA_TOTAL_PESSOAS:
@@ -55,6 +57,47 @@ public class Menu {
 
         Cliente cliente = new Cliente(nomeCliente,cpfCliente,idadeCliente,generoCliente);
         clientes.add(cliente);
+    }
+
+    public static void pesquisaClienteNome(List<Cliente> clientes) {
+        String nomePesquisa = JOptionPane.showInputDialog("Qual o nome do Cliente? ");
+        boolean flag = false;
+        if (clientes.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Não há clientes cadastrados com o nome" + nomePesquisa);
+        }
+        else {
+            for (Cliente cliente : clientes) {
+                if (cliente.getNome().equals(nomePesquisa)) {
+                    JOptionPane.showMessageDialog(null, cliente.toString());
+                    flag = true;
+                }
+            }
+            if(!flag) {
+                JOptionPane.showMessageDialog(null, "Não encontrou o Cliente");
+            }
+        }
 
     }
+
+    public static void pesquisaClienteCpf(List<Cliente> clientes) {
+        String cpfPesquisa = JOptionPane.showInputDialog("Qual o CPF do Cliente? ");
+        boolean flag = false;
+        if (clientes.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Não há clientes cadastrados com o CPF" + cpfPesquisa);
+        }
+        else {
+            for (Cliente cliente : clientes) {
+                if (cliente.getCpf().equals(cpfPesquisa)) {
+                    JOptionPane.showMessageDialog(null, cliente.toString());
+                    flag = true;
+                }
+            }
+            if(!flag) {
+                JOptionPane.showMessageDialog(null, "Não encontrou o Cliente");
+            }
+        }
+
+    }
+
+
 }
