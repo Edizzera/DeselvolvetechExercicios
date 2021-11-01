@@ -1,11 +1,14 @@
 package Program;
 
 
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         int[] valores = new int[20];
-        int[] nums = {10,10};
+        int[] nums = {10,10,11, 12,10,12,12,};
+
+
         for(int i = 0; i< valores.length; i++) {
             valores[i] = i * 10;
             System.out.print(valores[i] + " ");
@@ -27,6 +30,7 @@ public class Main {
         nOcorrencias(valores,1);
         hasRepeat(valores);
         hasRepeat(nums);
+         nroRepeat(nums);
     }
 
     public static int nOcorrencias(int[] l,Integer el){
@@ -49,5 +53,24 @@ public class Main {
             }
         }
         return false;
+    }
+
+    public static int nroRepeat(int[]l ){
+        Arrays.sort(l);
+        int repetido = 0;
+        for(int i = 0; i< l.length-1; i++){
+            int count = 1;
+            for(int j =i+1; j <l.length; j++){
+                if(l[i] == l[j])
+                    count++;
+                else
+                    break;
+            }
+            if(count>1){
+                System.out.println(l[i]+ " -> " + count);
+              repetido =  i+=(count-1);
+            }
+        } return repetido;
+
     }
 }
