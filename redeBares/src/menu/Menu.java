@@ -151,7 +151,7 @@ public class Menu {
         String removeCpf = JOptionPane.showInputDialog("Qual o numero do cpf de saída? ");
         boolean flag = false;
         for(Cliente saidaCli : clientes) {
-            if(saidaCli.getCpf().equals(removeCpf)) {
+            if(saidaCli.getCpf().equals(removeCpf) ) {
                 JOptionPane.showMessageDialog(null,"Volte Sempre!");
                 clientes.remove(saidaCli);
                 flag = true;
